@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, memo, useRef, useMemo } from 'react';
+import Link from 'next/link';
 import { FreeNoticeModal } from './FreeNoticeModal';
 import { countries, CountryConfig } from '@/lib/countryData';
 import {
@@ -424,7 +425,7 @@ export default function GlassStylePage() {
         
         {/* 头部 */}
         <header className="fixed top-0 left-0 right-0 h-[52px] z-40 flex items-center justify-between px-4 pt-2 transition-all duration-300">
-          <h1 
+          <h1
             onClick={toggleImmersive}
             className={`text-[17px] font-semibold text-white tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] cursor-pointer select-none transition-all duration-300 active:scale-95 touch-manipulation ${
               isImmersive ? 'opacity-50' : 'opacity-100'
@@ -432,16 +433,30 @@ export default function GlassStylePage() {
           >
             脸书小助手
           </h1>
-          
-          <div 
-            className={`flex items-center gap-1.5 pl-2 pr-2.5 py-1 rounded-full bg-black/40 border border-white/20 shadow-lg transition-all duration-500 ${
+
+          <div
+            className={`flex items-center gap-2 transition-all duration-500 ${
               isImmersive ? 'opacity-0 translate-x-10 pointer-events-none' : 'opacity-100 translate-x-0'
             }`}
           >
-            <div className="w-1.5 h-1.5 rounded-full bg-[#34C759] shadow-[0_0_6px_rgba(52,199,89,1)] animate-pulse" />
-            <span className="text-[11px] font-semibold text-white/95 font-mono tracking-tight drop-shadow-md">
-              {ipInfo.ip}
-            </span>
+            <Link
+              href="/mail"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/20 shadow-lg hover:bg-black/50 active:scale-95 transition-all touch-manipulation"
+            >
+              <Icon name="inbox" className="w-4 h-4 text-[#409CFF]" />
+              <span className="text-[12px] font-semibold text-white/95 tracking-tight drop-shadow-md">
+                邮箱大全
+              </span>
+            </Link>
+
+            <div
+              className="flex items-center gap-1.5 pl-2 pr-2.5 py-1 rounded-full bg-black/40 border border-white/20 shadow-lg"
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-[#34C759] shadow-[0_0_6px_rgba(52,199,89,1)] animate-pulse" />
+              <span className="text-[11px] font-semibold text-white/95 font-mono tracking-tight drop-shadow-md">
+                {ipInfo.ip}
+              </span>
+            </div>
           </div>
         </header>
 
